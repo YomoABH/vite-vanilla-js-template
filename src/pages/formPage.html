@@ -170,6 +170,7 @@
 		gap: 32px;
 		max-width: 400px;
 		margin: 40px auto 0;
+		padding-bottom: 40px;
 	}
 
 	/* ── FIELD WRAPPERS ── */
@@ -263,7 +264,66 @@
 		cursor: pointer;
 		display: inline-block;
 	}
+
+	.form-thanks {
+		font-size: 22px;
+		text-align: center;
+		margin-top: 60px;
+		font-family: var(--font-moiamova);
+	}
 	</style>
+
+	<script>
+		const BOT_TOKEN = '8664043296:AAGXmZ0sYe_DS_6oHvW92fVXQebdG_yPxzQ';
+		const CHAT_ID   = '-5247949683';
+
+		document.querySelector('.guest-form').addEventListener('submit', async (e) => {
+			e.preventDefault();
+
+			const name       = document.getElementById('guest-name').value.trim() || '—';
+			const attendance = document.querySelector('input[name="attendance"]:checked');
+			const prefs      = [...document.querySelectorAll('input[name="pref"]:checked')]
+				.map(el => el.nextElementSibling.nextElementSibling.textContent);
+
+			const attendanceLabel = attendance
+				? attendance.parentElement.querySelector('.radio__label').textContent
+				: '—';
+
+			const prefsText = prefs.length ? prefs.join(', ') : '—';
+
+			const text = [
+				'🎊 Новая заявка на свадьбу',
+				'',
+				`👤 Имя: ${name}`,
+				`✅ Присутствие: ${attendanceLabel}`,
+				`🍷 Предпочтения: ${prefsText}`,
+			].join('\n');
+
+			const btn = document.querySelector('.form-submit');
+			btn.disabled = true;
+			btn.textContent = 'Отправка...';
+
+			try {
+				const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({ chat_id: CHAT_ID, text }),
+				});
+
+				if (!res.ok) throw new Error();
+
+				document.querySelector('.guest-form').style.display = 'none';
+				const msg = document.createElement('p');
+				msg.className = 'form form-thanks';
+				msg.textContent = 'Спасибо! Ваш ответ принят 🤍';
+				document.querySelector('.container').appendChild(msg);
+			} catch {
+				btn.disabled = false;
+				btn.textContent = 'Подтвердить';
+				alert('Ошибка отправки. Попробуйте ещё раз.');
+			}
+		});
+	</script>
 </body>
 
 
