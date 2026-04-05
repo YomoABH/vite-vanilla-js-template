@@ -1,14 +1,39 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite.js Vanilla Template</title>
-  </head>
 
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/js/main.js"></script>
-  </body>
+<head>
+	<meta charset="UTF-8" />
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Vite.js Vanilla Template</title>
+</head>
+
+<body>
+	<div class="container">
+		<img src="./src/assets/images/mainBG.jpg" alt="Wedding Invite">
+		<a class="link" href="https://google.com">
+			Подтвердить
+		</a>
+	</div>
+	<script type="module" src="/src/js/main.js"></script>
+</body>
+
 </html>
+
+<style>
+	img {
+		height: 100%;
+		width: 100vw;
+	}
+
+	.link {
+		left: 50%;
+		bottom: 8.74%;
+		transform: translate(-50%);
+		position: absolute;
+		z-index: 10;
+		background: #000;
+		padding:  10px 30px;
+		opacity: 0;
+	}
+</style>
