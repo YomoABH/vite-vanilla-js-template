@@ -12,16 +12,15 @@
 <body>
 	<div class="container">
 		<img src="./src/assets/images/mainBG.jpg" alt="Wedding Invite">
-		<a class="link" href="https://google.com">
+		<a class="link" href="/src/pages/formPage.html">
 			Подтвердить
 		</a>
 	</div>
-	<script type="module" src="/src/js/main.js"></script>
-</body>
+	<audio id="bg-music" src="/src/assets/audio/sound.mp3" loop></audio>
 
-</html>
+	<button id="music-btn" title="Музыка">♪</button>
 
-<style>
+	<style>
 	img {
 		height: 100%;
 		width: 100vw;
@@ -37,4 +36,55 @@
 		padding:  10px 30px;
 		opacity: 0;
 	}
-</style>
+
+	#music-btn {
+		position: fixed;
+		top: 16px;
+		right: 16px;
+		z-index: 100;
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		border: none;
+		background: rgba(0,0,0,0.45);
+		color: #fff;
+		font-size: 18px;
+		cursor: pointer;
+		opacity: 0.7;
+		transition: opacity 0.2s;
+	}
+	#music-btn:hover { opacity: 1; }
+	#music-btn.muted { opacity: 0.4; }
+	</style>
+
+	<script>
+		const music = document.getElementById('bg-music');
+		const btn = document.getElementById('music-btn');
+		let playing = false;
+
+		function startMusic() {
+			music.play().then(() => {
+				playing = true;
+				btn.textContent = '♪';
+				btn.classList.remove('muted');
+			}).catch(() => {});
+		}
+
+		btn.addEventListener('click', () => {
+			if (playing) {
+				music.pause();
+				playing = false;
+				btn.textContent = '♪';
+				btn.classList.add('muted');
+			} else {
+				startMusic();
+			}
+		});
+
+		// Пробуем автозапуск
+		startMusic();
+	</script>
+</body>
+
+</html>
+

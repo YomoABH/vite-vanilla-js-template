@@ -1,12 +1,11 @@
 /* Moiamova-1 — положи файл в src/fonts/ и раскомментируй */
-/* @font-face {
+@font-face {
   font-family: 'Moiamova';
-  src: url('../fonts/Moiamova-1.woff2') format('woff2'),
-       url('../fonts/Moiamova-1.woff') format('woff');
+  src: url('../fonts/moiamova-1.otf') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
-} */
+}
 
 :root {
   --font-moiamova: 'Moiamova', 'Caveat', cursive;
