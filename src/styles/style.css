@@ -1,7 +1,7 @@
 /* Moiamova-1 — положи файл в src/fonts/ и раскомментируй */
 @font-face {
   font-family: 'Moiamova';
-  src: url('../fonts/moiamova-1.otf') format('woff');
+  src: url('../fonts/moiamova-1.otf');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -34,4 +34,5 @@ body {
   margin: 0 auto;
   width: 100%;
   position: relative;
+  padding: 0 16px;
 }
